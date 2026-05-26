@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Outing 2026 #7 & After Hours</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=Cormorant:ital,wght@1,300;1,400&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#B8922A;--gold2:#D4AF5A;--gold3:#F0D080;--gold-light:#F5E6C0;
+  --dark:#1A1200;--white:#FFFFFF;--off-white:#FDFBF5;
+  --card:#FFFEF8;--border:rgba(184,146,42,0.25);--border2:rgba(184,146,42,0.5);
+  --text:#2C1F00;--muted:#8A7040;--light-bg:#FBF7EE;
+}
+html{scroll-behavior:smooth}
+body{font-family:'IBM Plex Sans Thai',sans-serif;background:var(--white);color:var(--text);overflow-x:hidden}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+@keyframes pulse-gold{0%,100%{box-shadow:0 0 0 0 rgba(184,146,42,.35)}70%{box-shadow:0 0 0 14px rgba(184,146,42,0)}}
+
+/* ─── GOLD TEXT ─── */
+.gold-text{
+  background:linear-gradient(135deg,var(--gold),var(--gold2),var(--gold3),var(--gold2),var(--gold));
+  background-size:300% auto;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:shimmer 4s linear infinite;
+}
+
+/* ─── NAV ─── */
+nav{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:18px 56px;position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(255,255,255,.92);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  box-shadow:0 2px 20px rgba(184,146,42,.08);
+}
+.nav-logo{
+  font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:700;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.nav-btn{
+  font-size:13px;font-weight:700;font-family:'IBM Plex Sans Thai',sans-serif;
+  color:var(--white);
+  background:linear-gradient(135deg,var(--gold),#9A7520);
+  border:none;padding:10px 24px;border-radius:100px;cursor:pointer;
+  transition:transform .15s,box-shadow .2s;
+  box-shadow:0 4px 16px rgba(184,146,42,.35);
+}
+.nav-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(184,146,42,.5)}
+
+/* ─── HERO ─── */
+#hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;
+  padding:120px 24px 80px;position:relative;overflow:hidden;
+  background:url('optimized/hero-bg.jpg') center center / cover no-repeat;
+}
+.hero-bg{
+  position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(0,0,0,.62) 0%,rgba(0,0,0,.45) 60%,rgba(0,0,0,.65) 100%);
+}
+/* subtle grid */
+.hero-grid{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(rgba(184,146,42,.06) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(184,146,42,.06) 1px,transparent 1px);
+  background-size:64px 64px;
+}
+/* corner ornament */
+.ornament{position:absolute;opacity:.12;font-size:180px;pointer-events:none;line-height:1}
+.ornament-tl{top:-20px;left:-20px}
+.ornament-br{bottom:-20px;right:-20px;transform:rotate(180deg)}
+
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  border:1px solid var(--border2);border-radius:100px;
+  padding:8px 22px;font-size:12px;font-weight:700;letter-spacing:2.5px;
+  text-transform:uppercase;color:var(--gold);
+  background:rgba(184,146,42,.06);margin-bottom:28px;
+  animation:fadeUp .5s ease both;
+}
+.hero-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse-gold 2s infinite}
+
+.hero h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(38px,7.5vw,78px);
+  font-weight:700;line-height:1.2;
+  margin-bottom:6px;
+  animation:fadeUp .6s .1s ease both;
+  display:inline-block;
+  background:linear-gradient(135deg,var(--gold3),var(--gold2),var(--gold),var(--gold2),var(--gold3));
+  background-size:300% auto;
+  animation:shimmer 4s linear infinite, fadeUp .6s .1s ease both;
+  padding:22px 48px;
+  border-radius:24px;
+  box-shadow:0 8px 40px rgba(184,146,42,.7),0 0 0 1.5px rgba(240,208,128,.4);
+}
+.hero h1 .hero-title-text{
+  color:#1A1200;
+  -webkit-text-fill-color:#1A1200;
+  display:block;
+  filter:none;
+  text-shadow:0 1px 0 rgba(255,255,255,.2);
+}
+.hero h1 .highlight{display:block}
+
+.hero-tagline{
+  font-size:clamp(14px,2vw,18px);color:rgba(255,255,255,.85);
+  font-style:italic;letter-spacing:.5px;
+  margin-bottom:40px;animation:fadeUp .6s .2s ease both;
+}
+
+.hero-pills{
+  display:flex;justify-content:center;gap:10px;flex-wrap:wrap;
+  margin-bottom:44px;animation:fadeUp .6s .3s ease both;
+}
+.pill{
+  display:flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.35);
+  border-radius:100px;padding:9px 20px;font-size:14px;font-weight:600;
+  color:var(--white);box-shadow:0 2px 8px rgba(0,0,0,.2);
+  backdrop-filter:blur(8px);
+}
+
+.hero-cta{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:16px;font-weight:700;font-family:'IBM Plex Sans Thai',sans-serif;
+  color:var(--white);
+  background:linear-gradient(135deg,var(--gold),#9A7520);
+  border:none;padding:17px 48px;border-radius:100px;cursor:pointer;
+  transition:transform .15s,box-shadow .2s;
+  box-shadow:0 8px 32px rgba(184,146,42,.4);
+  animation:fadeUp .6s .4s ease both;
+  position:relative;overflow:hidden;
+}
+.hero-cta::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.15),transparent);opacity:0;transition:opacity .2s}
+.hero-cta:hover{transform:translateY(-3px);box-shadow:0 14px 44px rgba(184,146,42,.55)}
+.hero-cta:hover::before{opacity:1}
+
+/* Stats */
+.hero-stats{
+  display:flex;justify-content:center;
+  border-top:1px solid rgba(255,255,255,.2);margin-top:72px;
+  background:rgba(0,0,0,.35);backdrop-filter:blur(12px);
+  border-radius:16px;overflow:hidden;
+}
+.stat{
+  flex:1;max-width:200px;text-align:center;
+  padding:28px 16px;border-right:1px solid rgba(255,255,255,.15);
+}
+.stat:last-child{border-right:none}
+.stat-num{
+  font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;
+  line-height:1;margin-bottom:4px;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.stat-label{font-size:12px;color:rgba(255,255,255,.7);letter-spacing:.5px}
+
+/* ─── SECTION BASE ─── */
+section{padding:96px 24px;position:relative}
+.sec-inner{max-width:1060px;margin:0 auto}
+.sec-tag{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.sec-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(26px,4vw,42px);font-weight:700;line-height:1.2;margin-bottom:14px;color:var(--text);
+}
+.sec-desc{color:var(--muted);font-size:16px;line-height:1.7;max-width:540px;margin-bottom:44px}
+
+/* ─── DIVIDER ─── */
+.gold-line{
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold2),transparent);
+}
+
+/* ─── HOTEL ─── */
+#hotel{background:var(--light-bg)}
+.hotel-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:48px;align-items:start}
+.hotel-card{
+  background:var(--card);border:1px solid var(--border2);
+  border-radius:20px;overflow:hidden;
+  box-shadow:0 12px 48px rgba(184,146,42,.12);
+}
+.hotel-img{
+  height:240px;background:linear-gradient(135deg,#f5e9c8,#e8d49a);
+  display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;
+}
+.hotel-img-emoji{font-size:80px;animation:float 3s ease-in-out infinite;position:relative;z-index:1}
+.hotel-img::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,.25))}
+.hotel-img-label{
+  position:absolute;bottom:14px;left:14px;right:14px;z-index:1;
+  background:rgba(255,255,255,.92);backdrop-filter:blur(8px);
+  border-radius:12px;padding:12px 16px;
+  border:1px solid var(--border);
+}
+.hotel-stars{color:var(--gold);font-size:13px;margin-bottom:3px}
+.hotel-img-label h4{font-size:15px;font-weight:700;color:var(--text);margin-bottom:2px}
+.hotel-img-label p{font-size:12px;color:var(--muted)}
+.hotel-body{padding:20px}
+.hotel-amenities{display:flex;flex-wrap:wrap;gap:8px}
+.amenity{
+  display:flex;align-items:center;gap:6px;
+  background:rgba(184,146,42,.08);border:1px solid var(--border);
+  border-radius:100px;padding:6px 13px;font-size:12px;font-weight:600;color:var(--gold);
+}
+
+.hotel-info{display:flex;flex-direction:column;gap:14px}
+.hi-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:14px;padding:20px;display:flex;align-items:flex-start;gap:14px;
+  box-shadow:0 2px 12px rgba(184,146,42,.07);
+  transition:transform .2s,box-shadow .2s,border-color .2s;
+}
+.hi-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(184,146,42,.18);border-color:var(--border2)}
+.hi-icon{
+  width:46px;height:46px;flex-shrink:0;border-radius:12px;
+  background:rgba(184,146,42,.1);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;font-size:22px;
+}
+.hi-text h4{font-size:14px;font-weight:700;color:var(--text);margin-bottom:3px}
+.hi-text p{font-size:13px;color:var(--muted);line-height:1.5}
+
+/* ─── PARTY ─── */
+#party{background:var(--white)}
+.party-banner{
+  background:linear-gradient(135deg,#1A1200,#2C1F00);
+  border:1px solid rgba(184,146,42,.4);
+  border-radius:24px;padding:56px 48px;text-align:center;
+  position:relative;overflow:hidden;margin-bottom:40px;
+}
+.party-banner::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(212,175,90,.2),transparent 60%)}
+.party-banner .big-emoji{font-size:56px;display:block;margin-bottom:16px;animation:float 2.5s ease-in-out infinite;position:relative}
+.party-banner h2{
+  font-family:'Cormorant Garamond',serif;font-size:clamp(26px,5vw,50px);
+  font-weight:700;color:var(--white);margin-bottom:10px;position:relative;
+}
+.party-banner p{font-size:16px;color:rgba(255,255,255,.6);position:relative}
+
+.party-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.party-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:16px;padding:26px 22px;text-align:center;
+  box-shadow:0 2px 16px rgba(184,146,42,.07);
+  transition:transform .2s,border-color .2s,box-shadow .2s;
+}
+.party-card:hover{transform:translateY(-4px);border-color:var(--border2);box-shadow:0 10px 32px rgba(184,146,42,.18)}
+.party-card .emoji{font-size:40px;display:block;margin-bottom:14px}
+.party-card h4{font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px}
+.party-card p{font-size:13px;color:var(--muted);line-height:1.5}
+
+/* ─── PARTY GALLERY ─── */
+.party-gallery{
+  display:grid;grid-template-columns:1.4fr 1fr;gap:14px;margin-top:28px;
+}
+.pgal-col{display:flex;flex-direction:column;gap:14px}
+.pgal-item{
+  position:relative;border-radius:18px;overflow:hidden;
+  box-shadow:0 8px 32px rgba(0,0,0,.18);
+  transition:transform .3s,box-shadow .3s;cursor:pointer;
+}
+.pgal-item:hover{transform:scale(1.02);box-shadow:0 16px 48px rgba(0,0,0,.28)}
+.pgal-big{height:360px}
+.pgal-col .pgal-item{height:170px}
+.pgal-item img{width:100%;height:100%;object-fit:cover;display:block}
+.pgal-item::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,.55));
+}
+.pgal-label{
+  position:absolute;bottom:14px;left:16px;z-index:1;
+  color:#fff;font-size:13px;font-weight:700;letter-spacing:.5px;
+  text-shadow:0 1px 6px rgba(0,0,0,.6);
+}
+@media(max-width:768px){
+  .party-gallery{grid-template-columns:1fr}
+  .pgal-big{height:240px}
+  .pgal-col{flex-direction:row}
+  .pgal-col .pgal-item{height:160px;flex:1}
+}
+
+/* ─── PRIZE ─── */
+#prize{background:var(--light-bg)}
+.prize-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:20px}
+.prize-card{
+  border-radius:20px;padding:32px 22px;text-align:center;
+  position:relative;overflow:hidden;
+  transition:transform .2s,box-shadow .2s;
+  background:var(--white);
+}
+.prize-card:hover{transform:translateY(-6px)}
+.prize-card.gold{border:2px solid rgba(255,215,0,.5);box-shadow:0 8px 32px rgba(255,215,0,.15)}
+.prize-card.silver{border:2px solid rgba(180,180,180,.5);box-shadow:0 8px 32px rgba(180,180,180,.1)}
+.prize-card.bronze{border:2px solid rgba(184,115,51,.45);box-shadow:0 8px 32px rgba(184,115,51,.1)}
+.prize-rank{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+.prize-card.gold .prize-rank{color:#B8960A}
+.prize-card.silver .prize-rank{color:#909090}
+.prize-card.bronze .prize-rank{color:#A0631A}
+.prize-emoji{font-size:52px;display:block;margin-bottom:14px;animation:float 3s ease-in-out infinite}
+.prize-card.silver .prize-emoji{animation-delay:.5s}
+.prize-card.bronze .prize-emoji{animation-delay:1s}
+.prize-amount{
+  font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,40px);
+  font-weight:700;line-height:1;margin-bottom:6px;
+}
+.prize-card.gold .prize-amount{background:linear-gradient(135deg,#B8960A,#E8C020);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.prize-card.silver .prize-amount{background:linear-gradient(135deg,#808080,#B0B0B0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.prize-card.bronze .prize-amount{background:linear-gradient(135deg,#A0631A,#C88030);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.prize-sub{font-size:13px;color:var(--muted)}
+/* Big prize display */
+.prize-big{text-align:center}
+.prize-big-inner{
+  background:var(--white);border:1.5px solid var(--border2);
+  border-radius:28px;padding:56px 40px;margin-bottom:20px;
+  box-shadow:0 16px 56px rgba(184,146,42,.14);
+  position:relative;overflow:hidden;
+}
+.prize-big-inner::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 0%,rgba(212,175,90,.1),transparent 60%);
+  pointer-events:none;
+}
+.prize-big-emoji{font-size:64px;display:block;margin-bottom:20px;animation:float 3s ease-in-out infinite;position:relative}
+.prize-big-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(64px,12vw,110px);font-weight:700;line-height:1;
+  margin-bottom:4px;position:relative;letter-spacing:-2px;
+}
+.prize-big-unit{
+  font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;
+  color:var(--gold2);margin-bottom:20px;letter-spacing:4px;text-transform:uppercase;
+}
+.prize-big-desc{font-size:15px;color:var(--muted);line-height:1.7;position:relative}
+.prize-extras{
+  background:var(--white);border:1px solid var(--border);border-radius:14px;
+  padding:22px;display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;
+}
+.pex{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--text)}
+.pex-badge{
+  background:rgba(184,146,42,.1);border:1px solid var(--border);
+  border-radius:6px;padding:3px 10px;font-size:12px;color:var(--gold);font-weight:700;
+}
+
+/* ─── REGISTER ─── */
+#register{background:var(--light-bg)}
+.reg-wrap{max-width:540px;margin:0 auto}
+.reg-head{text-align:center;margin-bottom:36px}
+
+/* Multi-step */
+.step{display:none}
+.step.active{display:block;animation:fadeUp .4s ease both}
+.step-indicator{display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:36px}
+.step-dot{
+  width:34px;height:34px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:700;
+  border:2px solid var(--border2);background:var(--white);color:var(--muted);
+  transition:all .3s;flex-shrink:0;
+}
+.step-dot.active{background:linear-gradient(135deg,var(--gold),#9A7520);border-color:var(--gold);color:#fff;box-shadow:0 4px 14px rgba(184,146,42,.4)}
+.step-dot.done{background:var(--gold-light);border-color:var(--gold);color:var(--gold)}
+.step-line{flex:1;max-width:60px;height:2px;background:var(--border);transition:background .3s}
+.step-line.done{background:linear-gradient(90deg,var(--gold),var(--gold2))}
+
+.card{
+  background:var(--white);border:1px solid var(--border2);
+  border-radius:22px;padding:38px 34px;
+  box-shadow:0 16px 60px rgba(184,146,42,.12);
+  position:relative;overflow:hidden;
+}
+.card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--gold),var(--gold2),var(--gold3),var(--gold2),var(--gold));
+  background-size:300% auto;animation:shimmer 4s linear infinite;
+}
+
+.form-group{margin-bottom:22px}
+label.field-label{
+  display:block;font-size:12px;font-weight:700;
+  letter-spacing:.8px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:9px;
+}
+input[type=text]{
+  width:100%;
+  background:var(--off-white);border:1.5px solid var(--border);
+  border-radius:11px;padding:13px 16px;
+  font-size:15px;font-family:'IBM Plex Sans Thai',sans-serif;
+  color:var(--text);outline:none;
+  transition:border-color .2s,box-shadow .2s;
+}
+input::placeholder{color:var(--muted)}
+input:focus{border-color:var(--gold2);box-shadow:0 0 0 3px rgba(184,146,42,.12)}
+input:valid:not(:placeholder-shown){border-color:rgba(120,180,80,.6)}
+
+/* Toggle */
+.toggle-group{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tog input[type=radio]{position:absolute;opacity:0;pointer-events:none}
+.tog{position:relative}
+.tog label{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;
+  background:var(--off-white);border:2px solid var(--border);
+  border-radius:14px;padding:18px 12px;cursor:pointer;text-align:center;
+  transition:all .2s;font-size:14px;font-weight:600;color:var(--muted);
+  text-transform:none;letter-spacing:0;
+}
+.tog label .t-icon{font-size:26px;display:block}
+.tog input:checked + label{
+  border-color:var(--gold);background:rgba(184,146,42,.07);
+  color:var(--gold);box-shadow:0 0 0 1px var(--gold);
+}
+
+/* Buttons */
+.btn-next,.btn-submit{
+  width:100%;padding:15px;border:none;border-radius:12px;
+  font-size:16px;font-weight:700;font-family:'IBM Plex Sans Thai',sans-serif;
+  cursor:pointer;margin-top:10px;
+  background:linear-gradient(135deg,var(--gold),#9A7520);
+  color:var(--white);
+  box-shadow:0 6px 24px rgba(184,146,42,.35);
+  transition:transform .15s,box-shadow .2s;position:relative;overflow:hidden;
+}
+.btn-next::before,.btn-submit::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,.15),transparent);
+  opacity:0;transition:opacity .2s;
+}
+.btn-next:hover,.btn-submit:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(184,146,42,.5)}
+.btn-next:hover::before,.btn-submit:hover::before{opacity:1}
+.btn-back{
+  width:100%;padding:12px;border:1.5px solid var(--border2);border-radius:12px;
+  font-size:14px;font-weight:600;font-family:'IBM Plex Sans Thai',sans-serif;
+  cursor:pointer;margin-top:8px;background:transparent;color:var(--gold);
+  transition:background .2s,border-color .2s;
+}
+.btn-back:hover{background:rgba(184,146,42,.06)}
+
+/* Success */
+.success{display:none;text-align:center;padding:20px 0 8px;animation:fadeUp .5s ease both}
+.success-icon{
+  width:72px;height:72px;border-radius:50%;
+  background:linear-gradient(135deg,var(--gold),#9A7520);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 18px;font-size:34px;
+  box-shadow:0 8px 28px rgba(184,146,42,.4);animation:pulse-gold 2s infinite;
+}
+.success h2{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--text);margin-bottom:8px}
+.success p{color:var(--muted);font-size:15px;line-height:1.6}
+
+.info-chips{display:flex;justify-content:center;gap:10px;margin-top:22px;flex-wrap:wrap}
+.chip{
+  display:flex;align-items:center;gap:6px;
+  background:var(--white);border:1px solid var(--border);
+  border-radius:100px;padding:7px 16px;font-size:12px;color:var(--muted);
+  box-shadow:0 1px 6px rgba(184,146,42,.08);
+}
+.chip .dot{width:5px;height:5px;border-radius:50%;background:var(--gold)}
+
+/* ─── FOOTER ─── */
+footer{
+  background:var(--dark);padding:28px 56px;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
+}
+.footer-logo{
+  font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:700;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.footer-copy{font-size:12px;color:rgba(255,255,255,.35)}
+
+@media(max-width:768px){
+  nav{padding:16px 20px}
+  .hotel-grid{grid-template-columns:1fr}
+  .party-cards{grid-template-columns:1fr}
+  .prize-grid{grid-template-columns:1fr}
+  .hero-stats{flex-wrap:wrap}
+  .stat{max-width:50%;border-bottom:1px solid var(--border)}
+  footer{padding:20px;flex-direction:column;text-align:center}
+  .party-banner{padding:36px 22px}
+}
+@media(max-width:480px){
+  .card{padding:26px 18px}
+  section{padding:72px 16px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">✦ Outing 2026 #7</div>
+  <button class="nav-btn" onclick="document.getElementById('register').scrollIntoView({behavior:'smooth'})">ลงทะเบียนเลย</button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-eyebrow"><div class="dot"></div> เปิดรับลงทะเบียนแล้ว! <div class="dot"></div></div>
+  <h1>
+    <span class="hero-title-text">Outing 2026 #7</span>
+    <span class="highlight hero-title-text">& After Hours</span>
+  </h1>
+  <p class="hero-tagline">ไม่ได้มาพัก แต่มาปลดล็อกความมันส์— พบกันที่กรุงเทพฯ</p>
+  <div class="hero-pills">
+    <div class="pill">📅 6–7 ธันวาคม 2569</div>
+    <div class="pill">📍 กรุงเทพมหานคร</div>
+    <div class="pill">🎉 งาน After Hours สุดพิเศษ</div>
+  </div>
+  <button class="hero-cta" onclick="document.getElementById('register').scrollIntoView({behavior:'smooth'})">
+    ✦ ลงทะเบียนเข้าร่วม
+  </button>
+
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">2</div><div class="stat-label">วันสุดมันส์</div></div>
+    <div class="stat"><div class="stat-num">1</div><div class="stat-label">After Party</div></div>
+    <div class="stat"><div class="stat-num">1M</div><div class="stat-label">เงินรางวัล</div></div>
+    <div class="stat"><div class="stat-num">BKK</div><div class="stat-label">กรุงเทพฯ</div></div>
+  </div>
+</section>
+
+<div class="gold-line"></div>
+
+<!-- HOTEL -->
+<section id="hotel">
+  <div class="sec-inner">
+    <p class="sec-tag">✦ ที่พัก</p>
+    <h2 class="sec-title">โรงแรมระดับ <span class="gold-text">5 ดาว</span><br/>ใจกลางกรุงเทพฯ</h2>
+    <p class="sec-desc">พักผ่อนอย่างหรูหราในโรงแรมระดับพรีเมียมกลางเมือง พร้อมวิวกรุงเทพฯ สุดอลังการ</p>
+    <div class="hotel-grid">
+      <div class="hotel-card">
+        <div class="hotel-img" style="padding:0;background:none;">
+          <img src="optimized/hotel.jpg" alt="Hotel" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;"/>
+          <div class="hotel-img-label">
+            <div class="hotel-stars">★★★★★</div>
+            <h4>The Luxe Bangkok Hotel & Spa</h4>
+            <p>Riverside · Bangkok, Thailand</p>
+          </div>
+        </div>
+        <div class="hotel-body">
+          <div class="hotel-amenities">
+            <div class="amenity">🏊 Rooftop Pool</div>
+            <div class="amenity">🍽️ Fine Dining</div>
+            <div class="amenity">🌆 City View</div>
+            <div class="amenity">🍹 Sky Bar</div>
+            <div class="amenity">🚗 Valet Parking</div>
+          </div>
+        </div>
+      </div>
+      <div class="hotel-info">
+        <div class="hi-card"><div class="hi-icon">🌆</div><div class="hi-text"><h4>วิวกรุงเทพฯ แบบ 360°</h4><p>ห้องพักทุกห้องมีวิวเมืองและแม่น้ำเจ้าพระยา สุดอลังการ</p></div></div>
+        <div class="hi-card"><div class="hi-icon">🍳</div><div class="hi-text"><h4>อาหารเช้า + อาหารค่ำ</h4><p>บุฟเฟ่ต์อาหารนานาชาติ 2 มื้อ</p></div></div>
+        <div class="hi-card"><div class="hi-icon">🚌</div><div class="hi-text"><h4>รถรับส่งฟรี</h4><p>บริการรับ-ส่งจากออฟฟิศถึงโรงแรม ไป-กลับ</p></div></div>
+        <div class="hi-card"><div class="hi-icon">🎭</div><div class="hi-text"><h4>After Hours Party</h4><p>งานเลี้ยงสุดพิเศษ วงดนตรีสุดมันส์</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-line"></div>
+
+<!-- PARTY -->
+<section id="party">
+  <div class="sec-inner">
+    <div class="party-banner">
+      <span class="big-emoji">🎶</span>
+      <h2><span class="gold-text">After Hours</span> Night</h2>
+      <p>พบกับปาร์ตี้สุดเอ็กซ์คลูซีฟที่คุณไม่อยากพลาด</p>
+      <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:20px;position:relative;">
+        <div style="border:1px solid rgba(212,175,90,.4);border-radius:100px;padding:8px 22px;font-size:13px;font-weight:700;letter-spacing:1.5px;color:#D4AF5A;">
+          🎭 Theme : Alter Ego Night
+        </div>
+        <div style="border:1px solid rgba(212,175,90,.4);border-radius:100px;padding:8px 22px;font-size:13px;font-weight:700;letter-spacing:1px;color:#D4AF5A;">
+          🎨 Mood&Tone : แดง · ดำ · ขาว · ครีม
+        </div>
+      </div>
+    </div>
+    <div class="party-cards">
+      <div class="party-card"><span class="emoji">🍾</span><h4>Open Bar ตลอดคืน</h4><p>เครื่องดื่ม ไม่อั้นตลอดทั้งงาน</p></div>
+      <div class="party-card"><span class="emoji">🎧</span><h4>วงดนตรี & แสงสีเสียง</h4><p>พบกับ Surprise สุดพิเศษ</p></div>
+      <div class="party-card"><span class="emoji">🏆</span><h4>ลุ้นรางวัลบนเวที</h4><p>ประกาศรางวัลและ Lucky Draw เงินรางวัลรวมมูลค่ากว่า 1,000,000 บาท!</p></div>
+    </div>
+
+    <!-- PHOTO GALLERY -->
+    <div class="party-gallery">
+      <div class="pgal-item pgal-big">
+        <img src="optimized/party1.jpg" alt="Party moment"/>
+        <div class="pgal-label">🥂 Cheers Night</div>
+      </div>
+      <div class="pgal-col">
+        <div class="pgal-item">
+          <img src="optimized/party2.jpg" alt="Party moment"/>
+          <div class="pgal-label">🕺 Dance Floor</div>
+        </div>
+        <div class="pgal-item">
+          <img src="optimized/party3.jpg" alt="Party moment"/>
+          <div class="pgal-label">🎉 Good Vibes</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-line"></div>
+
+<!-- PRIZE -->
+<section id="prize">
+  <div class="sec-inner">
+    <p class="sec-tag">✦ เงินรางวัล</p>
+    <h2 class="sec-title">รวมมูลค่ากว่า <span class="gold-text">1,000,000 บาท</span></h2>
+    <p class="sec-desc">ลุ้นรางวัลและของขวัญมากมายตลอดทั้งงาน ทุกคนมีสิทธิ์!</p>
+    <div class="prize-big">
+      <div class="prize-big-inner">
+        <span class="prize-big-emoji">🎁</span>
+        <div class="prize-big-num gold-text">1,000,000</div>
+        <div class="prize-big-unit">บาท</div>
+        <p class="prize-big-desc">รวมมูลค่าเงินรางวัลและของรางวัลทั้งหมดตลอดงาน<br/>ทุกคนมีสิทธิ์ลุ้น Lucky Draw ตลอดคืน!</p>
+      </div>
+      <div class="prize-extras">
+        <div class="pex">🎁 Lucky Draw <span class="pex-badge">ทุกคนมีสิทธิ์!</span></div>
+        <div class="pex">🎉 กิจกรรมตลอดงาน <span class="pex-badge">มากมายหลายรางวัล</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-line"></div>
+
+<!-- REGISTER -->
+<section id="register">
+  <div class="reg-wrap">
+    <div class="reg-head">
+      <p class="sec-tag" style="text-align:center">✦ ลงทะเบียน</p>
+      <h2 class="sec-title" style="text-align:center">เข้าร่วม<br/><span class="gold-text">Outing 2026 #7</span></h2>
+      <p style="color:var(--muted);font-size:15px;line-height:1.6;text-align:center">6–7 ธันวาคม 2569 · กรุงเทพมหานคร</p>
+    </div>
+
+    <!-- Step Indicator -->
+    <div class="step-indicator" id="stepIndicator">
+      <div class="step-dot active" id="sd1">1</div>
+      <div class="step-line" id="sl1"></div>
+      <div class="step-dot" id="sd2">2</div>
+      <div class="step-line" id="sl2"></div>
+      <div class="step-dot" id="sd3">3</div>
+    </div>
+
+    <div class="card">
+      <!-- STEP 1: ชื่อ -->
+      <div class="step active" id="step1">
+        <div class="form-group">
+          <label class="field-label">ชื่อจริง <span style="color:#c44">*</span></label>
+          <input type="text" id="fname" placeholder="เช่น สมชาย" required/>
+        </div>
+        <div class="form-group">
+          <label class="field-label">นามสกุล <span style="color:#c44">*</span></label>
+          <input type="text" id="lname" placeholder="เช่น ใจดี" required/>
+        </div>
+        <button class="btn-next" onclick="goStep(2)">ถัดไป →</button>
+      </div>
+
+      <!-- STEP 2: แฟน -->
+      <div class="step" id="step2">
+        <div class="form-group">
+          <label class="field-label">พาแฟนมาด้วยไหม? <span style="color:#c44">*</span></label>
+          <div class="toggle-group">
+            <div class="tog"><input type="radio" name="partner" id="pYes" value="yes" onchange="togglePartner()"/><label for="pYes"><span class="t-icon">💑</span>พามาด้วย</label></div>
+            <div class="tog"><input type="radio" name="partner" id="pNo" value="no" onchange="togglePartner()"/><label for="pNo"><span class="t-icon">🙋</span>ไปคนเดียว</label></div>
+          </div>
+        </div>
+        <div id="partnerNameGroup" style="display:none">
+          <div class="form-group">
+            <label class="field-label">ชื่อจริงแฟน <span style="color:#c44">*</span></label>
+            <input type="text" id="pfname" placeholder="เช่น มาลี"/>
+          </div>
+          <div class="form-group">
+            <label class="field-label">นามสกุลแฟน <span style="color:#c44">*</span></label>
+            <input type="text" id="plname" placeholder="เช่น รักดี"/>
+          </div>
+        </div>
+        <button class="btn-next" onclick="goStep(3)">ถัดไป →</button>
+        <button class="btn-back" onclick="goStep(1)">← ย้อนกลับ</button>
+      </div>
+
+      <!-- STEP 3: โรงแรม -->
+      <div class="step" id="step3">
+        <div class="form-group">
+          <label class="field-label">ท่านสะดวกนอนโรงแรมไหม? <span style="color:#c44">*</span></label>
+          <div class="toggle-group">
+            <div class="tog"><input type="radio" name="hotel" id="hYes" value="yes"/><label for="hYes"><span class="t-icon">🏨</span>นอนโรงแรม</label></div>
+            <div class="tog"><input type="radio" name="hotel" id="hNo" value="no"/><label for="hNo"><span class="t-icon">🏠</span>กลับบ้านเอง</label></div>
+          </div>
+        </div>
+        <button class="btn-submit" onclick="submitForm()">✦ ยืนยันการลงทะเบียน</button>
+        <button class="btn-back" onclick="goStep(2)">← ย้อนกลับ</button>
+        <div class="success" id="successMsg">
+          <div class="success-icon">✦</div>
+          <h2>ลงทะเบียนสำเร็จแล้ว!</h2>
+          <p>เราได้รับข้อมูลของคุณเรียบร้อย<br/>พบกันที่งาน Outing 2026 #7 & After Hours 🎉</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-chips">
+      <div class="chip"><div class="dot"></div>บริษัทออกค่าใช้จ่ายทั้งหมด</div>
+      <div class="chip"><div class="dot"></div>6–7 ธ.ค. 2569</div>
+      <div class="chip"><div class="dot"></div>มีลุ้นรางวัลใหญ่</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">✦ Outing 2026 #7 & After Hours</div>
+  <div class="footer-copy">© 2026 — สนุก ปลอดภัย และคืนที่ดีที่สุด 🥂</div>
+</footer>
+
+<script>
+var currentStep = 1;
+
+function goStep(n) {
+  // Validate before moving forward
+  if (n > currentStep) {
+    if (currentStep === 1) {
+      var fn = document.getElementById('fname').value.trim();
+      var ln = document.getElementById('lname').value.trim();
+      if (!fn || !ln) { alert('กรุณากรอกชื่อจริงและนามสกุล'); return; }
+    }
+    if (currentStep === 2) {
+      var pval = document.querySelector('input[name="partner"]:checked');
+      if (!pval) { alert('กรุณาเลือกว่าพาแฟนมาด้วยหรือไม่'); return; }
+      if (pval.value === 'yes') {
+        var pf = document.getElementById('pfname').value.trim();
+        var pl = document.getElementById('plname').value.trim();
+        if (!pf || !pl) { alert('กรุณากรอกชื่อและนามสกุลของแฟน'); return; }
+      }
+    }
+  }
+
+  document.getElementById('step' + currentStep).classList.remove('active');
+  document.getElementById('sd' + currentStep).classList.remove('active');
+  if (n > currentStep) document.getElementById('sd' + currentStep).classList.add('done');
+  if (n < currentStep) document.getElementById('sd' + (currentStep)).classList.remove('done');
+
+  // Update lines
+  for (var i = 1; i <= 2; i++) {
+    document.getElementById('sl' + i).classList.toggle('done', i < n);
+  }
+
+  currentStep = n;
+  document.getElementById('step' + currentStep).classList.add('active');
+  document.getElementById('sd' + currentStep).classList.add('active');
+}
+
+function togglePartner() {
+  var pval = document.querySelector('input[name="partner"]:checked');
+  var pg = document.getElementById('partnerNameGroup');
+  if (pval && pval.value === 'yes') {
+    pg.style.display = 'block';
+  } else {
+    pg.style.display = 'none';
+    document.getElementById('pfname').value = '';
+    document.getElementById('plname').value = '';
+  }
+}
+
+var SHEET_URL = 'https://script.google.com/macros/s/AKfycbwgmGqNRSRyPGDEycQb5GMxy_dEOux0AQoJiBCbxuMYDaIgNpiX2TmnTkHG_CU5Gr-Q/exec';
+
+function submitForm() {
+  var hval = document.querySelector('input[name="hotel"]:checked');
+  if (!hval) { alert('กรุณาเลือกว่าต้องการนอนโรงแรมหรือกลับบ้าน'); return; }
+
+  var pval    = document.querySelector('input[name="partner"]:checked');
+  var pName   = '';
+  if (pval && pval.value === 'yes') {
+    pName = (document.getElementById('pfname').value.trim() + ' ' +
+             document.getElementById('plname').value.trim()).trim();
+  }
+
+  var data = {
+    fname       : document.getElementById('fname').value.trim(),
+    lname       : document.getElementById('lname').value.trim(),
+    partner     : pval ? (pval.value === 'yes' ? 'พามาด้วย' : 'ไปคนเดียว') : '-',
+    partnerName : pName,
+    hotel       : hval.value === 'yes' ? 'นอนโรงแรม' : 'กลับบ้านเอง'
+  };
+
+  // Loading state
+  var btn = document.querySelector('.btn-submit');
+  btn.textContent = '⏳ กำลังบันทึก...';
+  btn.disabled = true;
+
+  fetch(SHEET_URL, {
+    method  : 'POST',
+    mode    : 'no-cors',
+    headers : { 'Content-Type': 'application/json' },
+    body    : JSON.stringify(data)
+  }).then(function() {
+    var step = document.getElementById('step3');
+    step.querySelectorAll('.form-group, .btn-submit, .btn-back').forEach(function(el){ el.style.display='none'; });
+    document.getElementById('successMsg').style.display = 'block';
+    document.getElementById('sd3').classList.remove('active');
+    document.getElementById('sd3').classList.add('done');
+  }).catch(function() {
+    btn.textContent = '✦ ยืนยันการลงทะเบียน';
+    btn.disabled = false;
+    alert('เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง');
+  });
+}
+</script>
+</body>
+</html>
