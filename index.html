@@ -674,11 +674,11 @@ footer{
       <!-- STEP 1: ชื่อ -->
       <div class="step active" id="step1">
         <div class="form-group">
-          <label class="field-label">ชื่อจริง <span style="color:#c44">*</span></label>
+          <label class="field-label">ชื่อจริง (TH) <span style="color:#c44">*</span></label>
           <input type="text" id="fname" placeholder="เช่น สมชาย" required/>
         </div>
         <div class="form-group">
-          <label class="field-label">นามสกุล <span style="color:#c44">*</span></label>
+          <label class="field-label">นามสกุล (TH) <span style="color:#c44">*</span></label>
           <input type="text" id="lname" placeholder="เช่น ใจดี" required/>
         </div>
         <button class="btn-next" onclick="goStep(2)">ถัดไป →</button>
@@ -710,10 +710,10 @@ footer{
       <!-- STEP 3: โรงแรม -->
       <div class="step" id="step3">
         <div class="form-group">
-          <label class="field-label">ท่านสะดวกนอนโรงแรมไหม? <span style="color:#c44">*</span></label>
+          <label class="field-label">ท่านสะดวกเข้าพักที่ไหน <span style="color:#c44">*</span></label>
           <div class="toggle-group">
-            <div class="tog"><input type="radio" name="hotel" id="hYes" value="yes"/><label for="hYes"><span class="t-icon">🏨</span>พักที่โรงแรมจ้า</label></div>
-            <div class="tog"><input type="radio" name="hotel" id="hNo" value="no"/><label for="hNo"><span class="t-icon">🏠</span>พักที่บ้านจ้า</label></div>
+            <div class="tog"><input type="radio" name="hotel" id="hYes" value="yes"/><label for="hYes"><span class="t-icon">🏨</span>โรงแรม</label></div>
+            <div class="tog"><input type="radio" name="hotel" id="hNo" value="no"/><label for="hNo"><span class="t-icon">🏠</span>บ้าน</label></div>
           </div>
         </div>
         <button class="btn-submit" onclick="submitForm()">✦ ยืนยันการลงทะเบียน</button>
