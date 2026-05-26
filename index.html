@@ -764,7 +764,7 @@ function togglePartner() {
   }
 }
 
-var SHEET_URL = 'https://script.google.com/macros/s/AKfycbwgmGqNRSRyPGDEycQb5GMxy_dEOux0AQoJiBCbxuMYDaIgNpiX2TmnTkHG_CU5Gr-Q/exec';
+var SHEET_URL = 'https://script.google.com/macros/s/AKfycbxF2CqovmJv7GLFMQyBtLSRtonuR8bOhluXe4_kZzpYfv0HyTHut169Y3IPerGmdZN0/exec';
 
 function submitForm() {
   var hval = document.querySelector('input[name="hotel"]:checked');
@@ -785,27 +785,42 @@ function submitForm() {
     hotel       : hval.value === 'yes' ? 'นอนโรงแรม' : 'กลับบ้านเอง'
   };
 
-  // Loading state
   var btn = document.querySelector('.btn-submit');
-  btn.textContent = '⏳ กำลังบันทึก...';
+  btn.textContent = '⏳ กำลังตรวจสอบ...';
   btn.disabled = true;
 
-  fetch(SHEET_URL, {
-    method  : 'POST',
-    mode    : 'no-cors',
-    headers : { 'Content-Type': 'application/json' },
-    body    : JSON.stringify(data)
-  }).then(function() {
-    var step = document.getElementById('step3');
-    step.querySelectorAll('.form-group, .btn-submit, .btn-back').forEach(function(el){ el.style.display='none'; });
-    document.getElementById('successMsg').style.display = 'block';
-    document.getElementById('sd3').classList.remove('active');
-    document.getElementById('sd3').classList.add('done');
-  }).catch(function() {
-    btn.textContent = '✦ ยืนยันการลงทะเบียน';
-    btn.disabled = false;
-    alert('เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง');
-  });
+  // ตรวจสอบนามสกุลซ้ำก่อน
+  fetch(SHEET_URL + '?lname=' + encodeURIComponent(data.lname))
+    .then(function(r) { return r.json(); })
+    .then(function(res) {
+      if (res.exists) {
+        btn.textContent = '✦ ยืนยันการลงทะเบียน';
+        btn.disabled = false;
+        alert('⚠️ นามสกุล "' + data.lname + '" ลงทะเบียนไปแล้ว\nหากต้องการแก้ไข กรุณาติดต่อผู้ดูแลงาน');
+        return null;
+      }
+
+      btn.textContent = '⏳ กำลังบันทึก...';
+      return fetch(SHEET_URL, {
+        method  : 'POST',
+        mode    : 'no-cors',
+        headers : { 'Content-Type': 'application/json' },
+        body    : JSON.stringify(data)
+      });
+    })
+    .then(function(r) {
+      if (!r) return;
+      var step = document.getElementById('step3');
+      step.querySelectorAll('.form-group, .btn-submit, .btn-back').forEach(function(el){ el.style.display='none'; });
+      document.getElementById('successMsg').style.display = 'block';
+      document.getElementById('sd3').classList.remove('active');
+      document.getElementById('sd3').classList.add('done');
+    })
+    .catch(function() {
+      btn.textContent = '✦ ยืนยันการลงทะเบียน';
+      btn.disabled = false;
+      alert('เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง');
+    });
 }
 </script>
 </body>
