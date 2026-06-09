@@ -824,11 +824,11 @@ function submitForm() {
       headers : { 'Content-Type': 'application/json' },
       body    : JSON.stringify(data)
     }).then(function() {
-      var step = document.getElementById('step4');
+      var step = document.getElementById('step3');
       step.querySelectorAll('.form-group, .btn-submit, .btn-back').forEach(function(el){ el.style.display='none'; });
       document.getElementById('successMsg').style.display = 'block';
-      document.getElementById('sd4').classList.remove('active');
-      document.getElementById('sd4').classList.add('done');
+      document.getElementById('sd3').classList.remove('active');
+      document.getElementById('sd3').classList.add('done');
     }).catch(function() {
       btn.textContent = '✦ ยืนยันการลงทะเบียน';
       btn.disabled = false;
