@@ -430,7 +430,14 @@ section{padding:96px 24px;position:relative}
 /* ─── REGISTER ─── */
 #register{background:var(--light-bg)}
 .reg-wrap{max-width:540px;margin:0 auto}
-.reg-head{text-align:center;margin-bottom:36px}
+.reg-head{text-align:center;margin-bottom:24px}
+.reg-notice{
+  background:rgba(184,146,42,.06);border:1px solid rgba(184,146,42,.3);
+  border-radius:14px;padding:16px 20px;margin-bottom:28px;
+}
+.reg-notice-row{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--muted);line-height:1.6}
+.reg-notice-row+.reg-notice-row{margin-top:8px}
+.reg-notice-row .ni{color:var(--gold);flex-shrink:0;font-size:15px}
 
 /* Multi-step */
 .step{display:none}
@@ -775,6 +782,12 @@ footer{
       <p class="sec-tag" style="text-align:center">✦ ลงทะเบียน</p>
       <h2 class="sec-title" style="text-align:center">เข้าร่วม<br/><span class="gold-text">Outing 2026 #7</span></h2>
       <p style="color:var(--muted);font-size:15px;line-height:1.6;text-align:center">6–7 ธันวาคม 2569 · กรุงเทพมหานคร</p>
+    </div>
+
+    <!-- เงื่อนไขการลงทะเบียน -->
+    <div class="reg-notice">
+      <div class="reg-notice-row"><span class="ni">📅</span><span>เปิดให้ลงทะเบียนตั้งแต่วันที่ <strong style="color:var(--text)">10 – 15 มิถุนายน 2026</strong></span></div>
+      <div class="reg-notice-row"><span class="ni">⚠️</span><span>กิจกรรมนี้ขอสงวนสิทธิ์ให้ <strong style="color:var(--text)">สมาชิกของบริษัทเจริญทัศน์</strong> ลงทะเบียนเท่านั้น</span></div>
     </div>
 
     <!-- Step Indicator -->
