@@ -199,6 +199,45 @@ section{padding:96px 24px;position:relative}
 .vtour-frame iframe{width:100%;height:100%;border:none;display:block}
 @media(max-width:768px){.vtour-frame{height:300px}}
 
+/* ─── TRAVEL MODAL ─── */
+.modal-overlay{
+  display:none;position:fixed;inset:0;z-index:500;
+  background:rgba(0,0,0,.7);backdrop-filter:blur(6px);
+  align-items:center;justify-content:center;padding:20px;
+}
+.modal-overlay.open{display:flex}
+.modal-box{
+  background:var(--card);border:1px solid var(--border2);
+  border-radius:22px;padding:36px 32px;max-width:540px;width:100%;
+  box-shadow:0 24px 80px rgba(0,0,0,.6);
+  position:relative;max-height:85vh;overflow-y:auto;
+  animation:fadeUp .3s ease both;
+}
+.modal-close{
+  position:absolute;top:16px;right:16px;
+  width:34px;height:34px;border-radius:50%;border:1px solid var(--border2);
+  background:transparent;color:var(--muted);font-size:18px;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:background .2s,color .2s;
+}
+.modal-close:hover{background:rgba(184,146,42,.1);color:var(--gold)}
+.modal-title{
+  font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;
+  color:var(--text);margin-bottom:22px;padding-right:30px;
+}
+.travel-section{margin-bottom:20px}
+.travel-section:last-child{margin-bottom:0}
+.travel-mode{
+  font-size:15px;font-weight:700;color:var(--gold);
+  margin-bottom:10px;display:flex;align-items:center;gap:8px;
+}
+.travel-detail{
+  color:var(--muted);font-size:14px;line-height:1.75;
+  padding-left:4px;
+}
+.travel-detail li{margin-bottom:8px;list-style:none;padding-left:14px;position:relative}
+.travel-detail li::before{content:'•';position:absolute;left:0;color:var(--gold);opacity:.6}
+
 /* ─── HOTEL ─── */
 #hotel{background:var(--light-bg)}
 .hotel-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:48px;align-items:start}
@@ -591,7 +630,7 @@ footer{
       <div class="hotel-info">
         <div class="hi-card"><div class="hi-icon">🌆</div><div class="hi-text"><h4>วิวกรุงเทพฯ แบบ 360°</h4><p>ห้องพักทุกห้องมีวิวเมืองและแม่น้ำเจ้าพระยา สุดอลังการ</p></div></div>
         <div class="hi-card"><div class="hi-icon">🍳</div><div class="hi-text"><h4>บุฟเฟ่ต์ Goji Kitchen+Bar</h4><p>ร้านอาหารระดับพรีเมียม อาหารนานาชาติสุดหรู</p></div></div>
-        <div class="hi-card"><div class="hi-icon">🚌</div><div class="hi-text"><h4>รถรับส่งฟรี</h4><p>บริการรับ-ส่งจากออฟฟิศถึงโรงแรม ไป-กลับ</p></div></div>
+        <div class="hi-card" onclick="document.getElementById('travelModal').classList.add('open')" style="cursor:pointer;transition:transform .2s,box-shadow .2s,border-color .2s"><div class="hi-icon">🗺️</div><div class="hi-text"><h4>ข้อมูลการเดินทาง</h4><p style="color:var(--gold);font-size:13px;font-weight:600">คลิกเพื่อดูข้อมูลการเดินทาง →</p></div></div>
         <div class="hi-card"><div class="hi-icon">🎭</div><div class="hi-text"><h4>After Hours Party</h4><p>งานเลี้ยงสุดพิเศษ วงดนตรีสุดมันส์</p></div></div>
       </div>
     </div>
@@ -750,6 +789,29 @@ footer{
     </div>
   </div>
 </section>
+
+<!-- TRAVEL MODAL -->
+<div class="modal-overlay" id="travelModal" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal-box">
+    <button type="button" class="modal-close" onclick="document.getElementById('travelModal').classList.remove('open')">✕</button>
+    <div class="modal-title">🗺️ ข้อมูลการเดินทาง<br/><span style="font-size:15px;color:var(--muted);font-family:'IBM Plex Sans Thai',sans-serif;font-weight:400">Marriott Sukhumvit 22 · Bangkok</span></div>
+
+    <div class="travel-section">
+      <div class="travel-mode">🚆 รถไฟฟ้า BTS (สะดวกที่สุด)</div>
+      <ul class="travel-detail">
+        <li>สถานีพร้อมพงษ์: ออก<strong style="color:var(--text)">ทางออกที่ 6</strong> เดินเลี้ยวเข้าซอยสุขุมวิท 22 หรือเดินผ่านทางเชื่อมศูนย์การค้า แล้วเดินลัดเข้าซอย ประมาณ <strong style="color:var(--text)">200–300 เมตร</strong> ก็จะถึงโรงแรม</li>
+      </ul>
+    </div>
+
+    <div class="travel-section">
+      <div class="travel-mode">🚗 รถยนต์ส่วนตัว</div>
+      <ul class="travel-detail">
+        <li><strong style="color:var(--text)">จากสุขุมวิท (ขาเข้าเมือง/เอกมัย):</strong> ขับมาจนถึงแยกอโศก แล้วเลี้ยวซ้ายเข้าซอยสุขุมวิท 22 ได้โดยตรง</li>
+        <li><strong style="color:var(--text)">จากสุขุมวิท (ขาออก/พระโขนง):</strong> หากมาจากเส้นพระราม 4 สามารถเข้าทางซอยฝั่งถนนพระราม 4 แล้วทะลุเข้าซอยสุขุมวิท 22 เพื่อมายังโรงแรม</li>
+      </ul>
+    </div>
+  </div>
+</div>
 
 <!-- LIVE COUNTER WIDGET -->
 <div class="live-widget" id="liveWidget">
