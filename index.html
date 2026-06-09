@@ -178,6 +178,28 @@ section{padding:96px 24px;position:relative}
   background:linear-gradient(90deg,transparent,var(--gold2),transparent);
 }
 
+/* ─── ROOM GALLERY ─── */
+.room-gallery{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:32px}
+.room-gallery-item{
+  border-radius:16px;overflow:hidden;height:220px;position:relative;
+  border:1px solid var(--border2);
+  box-shadow:0 8px 32px rgba(0,0,0,.3);
+  transition:transform .3s,box-shadow .3s;cursor:pointer;
+}
+.room-gallery-item:hover{transform:scale(1.02);box-shadow:0 16px 48px rgba(0,0,0,.4)}
+.room-gallery-item img{width:100%;height:100%;object-fit:cover;display:block}
+.room-gallery-item::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.5));
+}
+.room-gallery-label{
+  position:absolute;bottom:12px;left:14px;z-index:1;
+  font-size:13px;font-weight:700;color:#fff;
+  text-shadow:0 1px 6px rgba(0,0,0,.6);
+}
+.room-gallery-title{font-size:13px;font-weight:700;color:var(--gold);margin-bottom:12px;margin-top:32px}
+@media(max-width:600px){.room-gallery{grid-template-columns:1fr}}
+
 /* ─── VIRTUAL TOUR ─── */
 .vtour-wrap{margin-top:40px}
 .vtour-label{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:10px}
@@ -632,6 +654,19 @@ footer{
         <div class="hi-card"><div class="hi-icon">🍳</div><div class="hi-text"><h4>บุฟเฟ่ต์ Goji Kitchen+Bar</h4><p>ร้านอาหารระดับพรีเมียม อาหารนานาชาติสุดหรู</p></div></div>
         <div class="hi-card" onclick="document.getElementById('travelModal').classList.add('open')" style="cursor:pointer;transition:transform .2s,box-shadow .2s,border-color .2s"><div class="hi-icon">🗺️</div><div class="hi-text"><h4>ข้อมูลการเดินทาง</h4><p style="color:var(--gold);font-size:13px;font-weight:600">คลิกเพื่อดูข้อมูลการเดินทาง →</p></div></div>
         <div class="hi-card"><div class="hi-icon">🎭</div><div class="hi-text"><h4>After Hours Party</h4><p>งานเลี้ยงสุดพิเศษ วงดนตรีสุดมันส์</p></div></div>
+      </div>
+    </div>
+
+    <!-- ROOM GALLERY -->
+    <p class="room-gallery-title">✦ รูปห้องพัก</p>
+    <div class="room-gallery">
+      <div class="room-gallery-item">
+        <img src="https://drive.google.com/uc?export=view&id=1UEvWC_XX1laXmJz4mHjZPTOTGGgbOnQF" alt="ห้องพัก Marriott Sukhumvit 22" loading="lazy"/>
+        <div class="room-gallery-label">🛏️ Deluxe Room</div>
+      </div>
+      <div class="room-gallery-item">
+        <img src="https://drive.google.com/uc?export=view&id=1uoRQ8Wkc18HLCL3PehZPTpBetIgrI3WU" alt="ห้องพัก Marriott Sukhumvit 22" loading="lazy"/>
+        <div class="room-gallery-label">🛏️ Superior Room</div>
       </div>
     </div>
 
