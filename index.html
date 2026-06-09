@@ -178,6 +178,27 @@ section{padding:96px 24px;position:relative}
   background:linear-gradient(90deg,transparent,var(--gold2),transparent);
 }
 
+/* ─── VIRTUAL TOUR ─── */
+.vtour-wrap{margin-top:40px}
+.vtour-label{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:10px}
+.vtour-label h3{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--text)}
+.vtour-open{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:13px;font-weight:700;font-family:'IBM Plex Sans Thai',sans-serif;
+  color:var(--gold);background:rgba(184,146,42,.08);
+  border:1px solid var(--border2);border-radius:100px;
+  padding:8px 18px;cursor:pointer;text-decoration:none;
+  transition:background .2s,box-shadow .2s;
+}
+.vtour-open:hover{background:rgba(184,146,42,.16);box-shadow:0 4px 14px rgba(184,146,42,.2)}
+.vtour-frame{
+  width:100%;height:480px;border-radius:18px;overflow:hidden;
+  border:1px solid var(--border2);
+  box-shadow:0 8px 40px rgba(0,0,0,.4);
+}
+.vtour-frame iframe{width:100%;height:100%;border:none;display:block}
+@media(max-width:768px){.vtour-frame{height:300px}}
+
 /* ─── HOTEL ─── */
 #hotel{background:var(--light-bg)}
 .hotel-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:48px;align-items:start}
@@ -574,6 +595,18 @@ footer{
         <div class="hi-card"><div class="hi-icon">🎭</div><div class="hi-text"><h4>After Hours Party</h4><p>งานเลี้ยงสุดพิเศษ วงดนตรีสุดมันส์</p></div></div>
       </div>
     </div>
+
+    <!-- VIRTUAL TOUR -->
+    <div class="vtour-wrap">
+      <div class="vtour-label">
+        <h3>🌐 ชม Virtual Tour 360° โรงแรม</h3>
+        <a href="https://panomatics.com/virtualtours/th/marriottmarquis/" target="_blank" class="vtour-open">↗ เปิดในหน้าใหม่</a>
+      </div>
+      <div class="vtour-frame">
+        <iframe src="https://panomatics.com/virtualtours/th/marriottmarquis/" allowfullscreen loading="lazy" title="Virtual Tour Marriott Marquis Bangkok"></iframe>
+      </div>
+    </div>
+
   </div>
 </section>
 
