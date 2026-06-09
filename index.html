@@ -221,6 +221,13 @@ section{padding:96px 24px;position:relative}
 .vtour-frame iframe{width:100%;height:100%;border:none;display:block}
 @media(max-width:768px){.vtour-frame{height:300px}}
 
+/* ─── FOOD MODAL GALLERY ─── */
+.food-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}
+.food-grid-item{border-radius:12px;overflow:hidden;height:130px;cursor:pointer;transition:transform .2s}
+.food-grid-item:hover{transform:scale(1.03)}
+.food-grid-item img{width:100%;height:100%;object-fit:cover;display:block}
+@media(max-width:480px){.food-grid{grid-template-columns:repeat(2,1fr)}}
+
 /* ─── TRAVEL MODAL ─── */
 .modal-overlay{
   display:none;position:fixed;inset:0;z-index:500;
@@ -651,7 +658,7 @@ footer{
       </div>
       <div class="hotel-info">
         <div class="hi-card"><div class="hi-icon">🌆</div><div class="hi-text"><h4>วิวกรุงเทพฯ แบบ 360°</h4></div></div>
-        <div class="hi-card"><div class="hi-icon">🍳</div><div class="hi-text"><h4>บุฟเฟ่ต์ Goji Kitchen+Bar</h4><p>ร้านอาหารระดับพรีเมียม อาหารนานาชาติสุดหรู</p></div></div>
+        <div class="hi-card" onclick="document.getElementById('foodModal').classList.add('open')" style="cursor:pointer"><div class="hi-icon">🍳</div><div class="hi-text"><h4>บุฟเฟ่ต์ Goji Kitchen+Bar</h4><p style="color:var(--gold);font-size:13px;font-weight:600">คลิกเพื่อดูรูปอาหาร →</p></div></div>
         <div class="hi-card" onclick="document.getElementById('travelModal').classList.add('open')" style="cursor:pointer;transition:transform .2s,box-shadow .2s,border-color .2s"><div class="hi-icon">🗺️</div><div class="hi-text"><h4>ข้อมูลการเดินทาง</h4><p style="color:var(--gold);font-size:13px;font-weight:600">คลิกเพื่อดูข้อมูลการเดินทาง →</p></div></div>
         <div class="hi-card"><div class="hi-icon">🎭</div><div class="hi-text"><h4>After Hours Party</h4><p>งานเลี้ยงสุดพิเศษ วงดนตรีสุดมันส์</p></div></div>
       </div>
@@ -832,6 +839,23 @@ footer{
     </div>
   </div>
 </section>
+
+<!-- FOOD MODAL -->
+<div class="modal-overlay" id="foodModal" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal-box">
+    <button type="button" class="modal-close" onclick="document.getElementById('foodModal').classList.remove('open')">✕</button>
+    <div class="modal-title">🍽️ Goji Kitchen+Bar<br/><span style="font-size:15px;color:var(--muted);font-family:'IBM Plex Sans Thai',sans-serif;font-weight:400">บุฟเฟ่ต์นานาชาติ · Marriott Sukhumvit 22</span></div>
+    <div class="food-grid">
+      <div class="food-grid-item"><img src="optimized/food1.jpg" alt="Goji Kitchen+Bar" loading="lazy"/></div>
+      <div class="food-grid-item"><img src="optimized/food2.jpg" alt="Goji Kitchen+Bar" loading="lazy"/></div>
+      <div class="food-grid-item"><img src="optimized/food3.jpg" alt="Goji Kitchen+Bar" loading="lazy"/></div>
+      <div class="food-grid-item"><img src="optimized/food4.jpg" alt="Goji Kitchen+Bar" loading="lazy"/></div>
+      <div class="food-grid-item"><img src="optimized/food5.jpg" alt="Goji Kitchen+Bar" loading="lazy"/></div>
+      <div class="food-grid-item"><img src="optimized/food6.jpg" alt="Goji Kitchen+Bar" loading="lazy"/></div>
+      <div class="food-grid-item"><img src="optimized/food7.jpg" alt="Goji Kitchen+Bar" loading="lazy"/></div>
+    </div>
+  </div>
+</div>
 
 <!-- TRAVEL MODAL -->
 <div class="modal-overlay" id="travelModal" onclick="if(event.target===this)this.classList.remove('open')">
