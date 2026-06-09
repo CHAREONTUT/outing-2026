@@ -58,19 +58,24 @@ nav{
   min-height:100vh;display:flex;flex-direction:column;
   align-items:center;justify-content:center;text-align:center;
   padding:120px 24px 80px;position:relative;overflow:hidden;
+}
+#hero::before{
+  content:'';position:absolute;inset:-20px;z-index:0;
   background:url('optimized/hero-bg.jpg') center center / cover no-repeat;
+  filter:blur(6px);transform:scale(1.05);
 }
 .hero-bg{
-  position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(180deg,rgba(0,0,0,.62) 0%,rgba(0,0,0,.45) 60%,rgba(0,0,0,.65) 100%);
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(0,0,0,.65) 0%,rgba(0,0,0,.48) 60%,rgba(0,0,0,.68) 100%);
 }
 /* subtle grid */
 .hero-grid{
-  position:absolute;inset:0;pointer-events:none;
+  position:absolute;inset:0;z-index:2;pointer-events:none;
   background-image:linear-gradient(rgba(184,146,42,.06) 1px,transparent 1px),
                    linear-gradient(90deg,rgba(184,146,42,.06) 1px,transparent 1px);
   background-size:64px 64px;
 }
+#hero>*:not(.hero-bg):not(.hero-grid):not(.ornament){position:relative;z-index:3;}
 /* corner ornament */
 .ornament{position:absolute;opacity:.12;font-size:180px;pointer-events:none;line-height:1}
 .ornament-tl{top:-20px;left:-20px}
